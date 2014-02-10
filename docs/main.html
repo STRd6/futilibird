@@ -50,12 +50,17 @@ bird = engine.add
   y: height/<span class="number">2</span>
   radius: <span class="number">30</span>
   color: <span class="string">"blue"</span>
+  acceleration: Point(<span class="number">0</span>, <span class="number">360</span>)
 
 bird.<span class="literal">on</span> <span class="string">"update"</span>, -&gt;
-  bird.I.y += <span class="number">1</span>
-
   <span class="keyword">if</span> mousePressed.left <span class="keyword">or</span> justPressed.any
     bird.I.y -= <span class="number">20</span>
+    bird.I.velocity = Point(<span class="number">0</span>, <span class="number">0</span>)
+
+bird.clamp
+  y:
+    min: <span class="number">0</span>
+    max: height
 
 [<span class="number">1.</span><span class="number">.3</span>].forEach (n) -&gt;
   pipe = engine.add
