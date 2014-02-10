@@ -17,12 +17,17 @@ Futilibird
       y: height/2
       radius: 30
       color: "blue"
+      acceleration: Point(0, 360)
 
     bird.on "update", ->
-      bird.I.y += 1
-
       if mousePressed.left or justPressed.any
         bird.I.y -= 20
+        bird.I.velocity = Point(0, 0)
+
+    bird.clamp
+      y:
+        min: 0
+        max: height
 
     [1..3].forEach (n) ->
       pipe = engine.add
